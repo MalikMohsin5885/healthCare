@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="Roles">
+        <div class="sidebar">
+            <div class="bar">
+                <h2>Admin</h2>
+            </div>
+            <ul>
+                <li class="<%= activeStatus === 'dashboard' ? 'active' : '' %>">
+                    <a href="/Admin">
+                        <img src="/dashboard.png" alt="" height="50" width="50">
+                        <!-- Image for Dashboard with height and width -->
+                        Dashboard
+                    </a>
+                </li>
+                <li class="<%= activeStatus === 'user-roles' ? 'active' : '' %>">
+                    <a href="/User-Roles">
+                        <img src="/user-role.png" alt="" height="30" width="30">
+                        <!-- Image for User Roles with height and width -->
+                        Roles
+                    </a>
+                </li>
+                <li class="<%= activeStatus === 'doctor' ? 'active' : '' %>">
+                    <a href="/doctor-management">
+                        <img src="/doctor.png" alt="" height="30" width="30">
+                        <!-- Image for Doctor Management with height and width -->
+                        Doctor management
+                    </a>
+                </li>
+                <li class="<%= activeStatus === 'patient' ? 'active' : '' %>">
+                    <a href="/patient-management">
+                        <img src="/patient.png" alt="" height="30" width="30">
+                        <!-- Image for Patient Management with height and width -->
+                        Patient management
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="bar">
+                <h3>Admin Pannel</h3>
+                <a href="/logout">Logout</a>
+            </div>
+
+            <div class="main-content-Roles">
+                <p id="p-tag">
+                    <%= activeStatus=='doctor' ? "Doctors" : "Patient" %>
+                </p>
+                <div class="d-flex justify-content-between">
+                    <div class="rounded-input-container">
+                        <div class="rounded-button">
+                            <img src="/search.png" height="32" width="32">
+                        </div>
+                        <!-- onkeyup="SearchAjax('<%= activeStatus %>')" -->
+                        <input type="text" class="rounded-input" id="SearchInput" placeholder="Search"
+                            oninput="updateUrl(event)" onkeydown="handleEnter(event)">
+                    </div>
+
+                    <a href="/Add-User" id="submitButton">Add <%= activeStatus=='doctor' ? "Doctors" : "Patient" %></a>
+                </div>
+                <div class="scrol-div">
+                    <div class="roles-list">
+                        <table id="user-management">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>DOB</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Role ID</th>
+                                <th>Edit options</th>
+                            </tr>
+
+                            <% if (Users) { %>
+                                <%Users.forEach(user=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= user.fName %>
+                                        </td>
+                                        <td>
+                                            <%= user.lName %>
+                                        </td>
+                                        <td>
+                                            <%= user.dob %>
+                                        </td>
+                                        <td>
+                                            <%= user.email %>
+                                        </td>
+                                        <td>
+                                            <%= user.country %>
+                                        </td>
+                                        <td>
+                                            <%= user.city %>
+                                        </td>
+                                        <td>
+                                            <%= user.roleId %>
+                                        </td>
+                                        <td class="d-flex justify-content-between">
+                                            <a href="/Add-User?id=<%=user.UserId%>"><img src="/edit-button.png"
+                                                    height="25" width="25"></a>
+
+                                            <form action="/Delete-User" method="post">
+                                                <input type="hidden" id="UserId" name="UserId" value=<%=user.UserId %>>
+                                                <button type="submit" style="border: none; background: none">
+                                                    <img src="/delete.png" height="32" width="32">
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <% console.log("no user get from db"); %>
+                                                <% } %>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

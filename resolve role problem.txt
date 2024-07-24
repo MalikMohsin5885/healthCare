@@ -1,0 +1,67 @@
+The issue is likely related to the fact that the role variable is being stored in a global context, and when you redirect to the /api/User-management route, the role variable is not being preserved. When you redirect, it's a new request, and the state from the previous request (including the value of role) is not maintained.
+
+One way to fix this issue is to pass the role as a query parameter when redirecting. Modify the redirect line in your /Add-User/submission route like this:
+return res.redirect(`/api/User-management?user=${role}`);
+
+
+other way 
+Another way to maintain the state between requests is by using session management. You can use a session library, such as `express-session`, to store session data on the server and associate it with a client. This allows you to persist data across multiple requests from the same client.
+
+Here's a brief example using `express-session`:
+
+1. Install `express-session`:
+
+```bash
+npm install express-session
+```
+
+2. Setup and use `express-session` in your Node.js application:
+
+```javascript
+const express = require('express');
+const session = require('express-session');
+const router = express.Router();
+const dboperations = require('path-to-your-db-operations');
+
+// Use express-session middleware
+router.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+}));
+
+router.get('/User-management', (req, res) => {
+    // Retrieve role from the session
+    const role = req.session.role;
+    
+    dboperations.getUserbyID(role).then(result => {
+        res.render('User-management', { doctors: result[0] });
+    });
+});
+
+router.get('/Add-User', (req, res) => {
+    res.render(__dirname + '/views/Add-User.ejs');
+});
+
+router.route('/Add-User/submission').post((req, res) => {
+    const role = req.body.role; // Assuming role is part of the form data
+
+    // Store role in the session
+    req.session.role = role;
+
+    dboperations.addUser(req.body, role).then(check => {
+        if (check) {
+            console.log('User added successfully.');
+            return res.redirect('/api/User-management');
+        } else {
+            return res.status(404).send('Error adding user');
+        }
+    });
+});
+
+module.exports = router;
+```
+
+In this example, the `express-session` middleware is used to create and manage a session for each user. The `role` is stored in the session when the user is redirected after adding a new user. In the `/User-management` route, you retrieve the `role` from the session.
+
+Remember to configure `express-session` according to your application's needs. This approach provides a more flexible and scalable way to manage user sessions and data across requests.

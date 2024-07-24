@@ -1,0 +1,85 @@
+const dboperations = require("./dboperations");
+var Db = require("./dboperations");
+
+var express = require("express");
+var bodyParser = require("body-parser");
+var cors = require("cors");
+var app = express(); // Create an instance of Express
+var router = express.Router(); // Create an instance of Express router//Using express.Router. This enables to break routing logic into modules.
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+const session = require('express-session');
+
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+
+
+app.use(session({
+    secret: 'your-secret-key', // Add a secret key for session data encryption
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.authenticate('session'));
+
+app.use("/api", router); // Attach the router to your app
+app.use(express.static('public'));//to serve static files like css and bootstrap
+
+
+// Now you can define your routes and route handlers on the 'router' object
+
+app.use((req, res, next) => {
+    // authentication authorization
+    console.log("middleware");
+    next();
+});
+
+passport.use(new LocalStrategy(function verify(email, password, done) {
+    dboperations.getUserTest(email,password).then(users =>{
+        if(users){
+            return done(null, users);
+        }
+        return done(null, false, { message: 'Invalid username or password.' });
+    });
+}));
+
+passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      cb(null, { user });
+    });
+  });
+  
+  passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, user);
+    });
+  });
+
+
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+router.get('/dashboard', (req, res) => {
+    if (req.isAuthenticated()) {
+      // Access user data from the session
+      const userData = req.user;
+      
+      // Log user data to the console
+      console.log(userData);
+  
+    //   res.send(`Welcome, ${userData.username}!`);
+    } else {
+      res.redirect('/login'); // Redirect to login if not authenticated
+    }
+  });
+
+  router.route("/login/submission").post(
+    passport.authenticate('local', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/login'
+      })
+);
+

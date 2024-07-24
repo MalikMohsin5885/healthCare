@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://kendo.cdn.telerik.com/themes/7.0.2/default/default-main.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js"></script>
+
+
+    <title>schedual an appointment</title>
+</head>
+
+<body>
+    <div class="admin-panel">
+        <div class="sidebar">
+            <div class="bar">
+                <h4>Make an appointment</h4>
+            </div>
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <img src="/dashboard.png" alt="" height="50" width="50">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Consultation">
+                        <img src="/consult.png" alt="" height="50" width="50">
+                        <!-- Image for Dashboard with height and width -->
+                        Take an Appointment
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/edit-profile?id=<%=Userdata.UserId%>">
+                        <img src="/edit-profile.png" alt="" height="50" width="50">
+                        Edit profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <img src="/logout.png" alt="" height="50" width="50">
+                        <!-- Image for Dashboard with height and width -->
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="content">
+            <div class="bar">
+                <h3>Welcome, <%= Userdata !=undefined ? Userdata.fName : "Deafult" %>
+                </h3>
+            </div>
+            <div class="content-appointment">
+
+                <div id="main-content-appointment">
+                    <div class="appointment-container">
+                        <img src="/calendar.png" alt="" height="35" width="35">
+                        <h3>Make an Appointment</h3>
+                    </div>
+
+                    <form id="payment-form">
+                        <div class="datetime-container">
+                            <!-- <div class="time-field">
+                                <label for="appointment-time">Select Time:</label>
+                                <input type="time" id="appointment-time" class="appointment-time"
+                                    name="appointmentTime">
+                            </div> -->
+
+                            <div class="k-d-flex k-flex-1 k-flex-col k-px-8">
+                                <div class="kd-header k-d-flex k-gap-8 k-mb-6 k-justify-content-stretch">
+                                    <div class="kd-header-core k-d-flex k-flex-col">
+                                        <span class="k-d-inline-block">Time</span>
+                                        <input id="timepicker" name="appointmentTime">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="date-field">
+                                <label for="appointment-date">Select Date:</label>
+                                <input id="appointment-date" class="appointment-date" name="appointmentDate" />
+                            </div> -->
+                            <div class="date-field">
+                                <div class="k-d-flex k-flex-1 k-flex-col k-px-8">
+                                    <div class="kd-header k-d-flex k-gap-8 k-mb-6 k-justify-content-stretch">
+                                        <div class="kd-header-core k-d-flex k-flex-col">
+                                            <span class="k-d-inline-block">Select Appointment Date</span>
+                                            <input id="datepicker" name="appointmentDate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <label for="reason">Reason for Appointment:</label>
+                        <textarea id="reason" class="reason" name="reason" rows="4"
+                            placeholder="Enter your reason for the appointment"></textarea>
+
+                        <h4>Payment Details</h4>
+                        <div id="payment-details">
+                            <p class="status-completed" style="font-size: 18px">$58/appointment</p>
+                            <div id="card-element"></div>
+                        </div>
+                        <button id="submit-button" type="submit" class="submit-button"
+                            style="width: 200px;">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/stripe.js"></script>
+</body>
+
+</html>

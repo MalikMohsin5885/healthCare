@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>Prescription</title>
+</head>
+
+<body>
+    <div class="admin-panel">        
+        <div class="sidebar">
+            <div class="bar">
+                <h4>Pending Consultation</h4>
+            </div>
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <img src="/dashboard.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Dashboard
+                    </a>
+                </li>
+                <% if (Userdata.roleId == 2) { %>
+                    <li>
+                        <a href="/PendingConsultation">
+                            <img src="/pending.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                            Pending consultation
+                        </a>
+                    </li>
+
+                <%} else if(Userdata.roleId == 3){ %>
+                    <li>
+                        <a href="/Consultation">
+                            <img src="/consult.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                            Take an Appointment
+                        </a>
+                    </li>
+                    
+                <% } %>
+                
+                <li>
+                    <a href="/edit-profile?id=<%=Userdata.UserId%>">
+                        <img src="/edit-profile.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Edit profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <img src="/logout.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="content">           
+            
+            <div class="bar">
+                <h3>Welcome, <%= Userdata != undefined ? Userdata.fName : "Deafult" %></h3>
+            </div>
+            <div class="main-content-appointment">
+                <h3>Appointment Details</h3>
+                <div class="scrol-div">
+                    <% !appointments ? console.log("No appointments taken") : appointments.forEach(function(appointment) { %>
+                        <div class="appointment-details">
+                            <p><strong>Disease Description:</strong>
+                                <%= appointment.ReasonForAppointment %>
+                            </p>
+                            <p><strong>Patient Name:</strong>
+                                <%= appointment.fName %>
+                            </p>
+                            <p><strong>Time:</strong>
+                                <%= appointment.Time %>
+                            </p>
+                            <p><strong>Date:</strong>
+                                <%= appointment.Date %>
+                            </p>
+
+                            <!-- Status box -->
+                            <p><strong>Status:</strong>
+                                <% if (appointment.AppointmentStatus==='Scheduled' ) { %>
+                                    <span class="status-scheduled">Scheduled</span>
+                                    <% } else if (appointment.AppointmentStatus==='Completed' ) { %>
+                                        <span class="status-completed">Completed</span>
+                                        <% } else { %>
+                                            <span class="status-pending">
+                                                <%= appointment.AppointmentStatus %>
+                                            </span>
+                                            <% } %>
+                            </p>
+
+                            <% if (appointment.AppointmentStatus==='Scheduled' ) { %>
+                                <a href=<%= appointment.StartURL %> class="submit-button" target="_blank">Join Now</a>
+                            <% } %>
+                        </div>
+                    <% }) %>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

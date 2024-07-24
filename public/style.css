@@ -1,0 +1,858 @@
+body > .homepage {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #61b2c7, #9dc8cf, #b0d2d3, #d6e8e8);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+/* Top right text */
+
+:active,
+:hover,
+:focus {
+  outline: 0 !important;
+  outline-offset: 0;
+}
+::before,
+::after {
+  position: absolute;
+  content: "";
+}
+
+.btn-holder {
+  display: flex;
+  margin-top: 30px;
+}
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  height: auto;
+  background-color: transparent;
+  border: none;
+  border-radius: 80px;
+  cursor: pointer;
+  margin: 0px 25px 15px;
+  min-width: 150px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+.btn span {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  transition: 0.3s;
+}
+.btn-2::before {
+  background-color: rgb(255, 255, 255);
+  transition: 0.3s ease-out;
+}
+.btn-2 span {
+  color: rgb(255, 255, 255);
+  transition: 0.2s;
+}
+.btn-2 span:hover {
+  color: rgb(0, 0, 0);
+  transition: 0.2s 0.1s;
+}
+.btn.hover-slide-down::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  width: 100%;
+}
+.btn.hover-slide-down:hover::before {
+  height: 100%;
+}
+.background-img {
+  height: 100%;
+}
+
+.h1-tag {
+  font-size: 4.3rem;
+  font-weight: bold;
+}
+
+/* Centered text */
+.homepage-text {
+  text-align: left;
+  font-size: 1.5rem;
+  color: #36646e;
+  font-family: Poppins, sans-serif;
+}
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #61b2c7, #9dc8cf, #b0d2d3, #d6e8e8);
+  font-family: "Poppins", sans-serif;
+  color: #555;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+* {
+  box-sizing: content-box; /* Override Bootstrap's box-sizing */
+}
+
+/* ------------------------sign up------------------------------- */
+
+.signup {
+  width: 60vw;
+  padding: 20px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* padding: 40px !important; */
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  animation: gradientAnimation 10s infinite alternate; /* Adjust the animation duration as needed */
+  z-index: 0; /* Set a z-index value for the .login element */
+}
+
+.signup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(-135deg, #d6e8e8, #b0d2d3, #92d4df, #58afc5);
+  background-size: 200% 200%;
+  animation: gradientAnimation 2s infinite alternate;
+  pointer-events: none;
+  z-index: -1; /* Set a z-index value behind the .login element */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.display-block-div {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-box-holder {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dob-gender {
+  margin: 0;
+  width: 200px;
+}
+
+.center-signup-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* ------------------------login------------------------------- */
+
+.login {
+  width: 27%;
+  padding: 40px !important;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  animation: gradientAnimation 10s infinite alternate; /* Adjust the animation duration as needed */
+  z-index: 0; /* Set a z-index value for the .login element */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.login::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(-135deg, #d6e8e8, #b0d2d3, #92d4df, #58afc5);
+  background-size: 200% 200%;
+  animation: gradientAnimation 2s infinite alternate;
+  pointer-events: none;
+  z-index: -1; /* Set a z-index value behind the .login element */
+}
+
+.login-div {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+input#username,
+#current-password {
+  border: none;
+  padding: 5px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  background-color: rgba(255,255,255,0.4);
+}
+
+.login-div > label {
+  font-family: Poppins, sans-serif;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+h2 {
+  font-family: Poppins, sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0%;
+  padding: 0%;
+}
+
+.login,
+.login::before,
+.login-div {
+  transition: all 0.3s ease-in-out;
+}
+
+.login:hover {
+  backdrop-filter: blur(20px);
+}
+
+.login h2 {
+  z-index: 3; /* Ensure that the h2 element is above other elements */
+}
+
+.login-btn-center {
+  line-height: 40px;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+/* -----------------------------gumnam css-------------------------------------------------------------------- */
+.custom-size {
+  width: 800px;
+  height: 400px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+.admin-panel,
+.Roles {
+  display: flex;
+  background-color: rgb(233, 237, 240);
+  font-family: Poppins, sans-serif;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #61b2c7;
+  border: 2px;
+  border-top-right-radius: 17px;
+  border-bottom-right-radius: 17px;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: #191a1a;
+  margin: 1px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 18px;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+  /* border-bottom: 1px solid rgb(160, 24, 24); */
+}
+
+.active-status {
+  background-color: #527179;
+  border-radius: 10px;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+
+/* ...................................................... */
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.sidebar ul li.active {
+  background-color: aliceblue;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+/* ...................................................... */
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.main-content-dashboard {
+  padding: 30px;
+  height: 70%;
+  /* background-color: #0c5252; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 18px;
+}
+
+.cards {
+  width: 35%;
+  height: 34%;
+  gap: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+}
+
+.svg-styling {
+  height: 60px;
+  width: 60px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+td,
+th {
+  border: 1px solid #cecdcd;
+  text-align: left;
+  padding: 8px;
+}
+
+#user-management tr:nth-child(even) {
+  background-color: #edebeb;
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+.main-content-Roles {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+#p-tag {
+  font-size: 22px;
+}
+
+.logout-svg {
+  height: 40px;
+  width: 44px;
+}
+
+.rounded-input-container {
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10px;
+  width: 30%;
+}
+
+.rounded-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 0 20px 20px 0;
+  background-color: rgb(234, 245, 255);
+}
+
+.rounded-button {
+  border: none;
+  background: none;
+  padding: 10px;
+  border-radius: 20px 0 0 20px;
+  background-color: rgb(234, 245, 255);
+}
+
+.rounded-input:focus {
+  outline: none;
+}
+
+/* -------------------------------------------------------------------------------------------------- */
+/* .role-body{
+  background-color: red;
+} */
+
+.content-addRole {
+  width: 68%;
+  height: 80%;
+  margin-top: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+#add-user {
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.centerbutton #add-role {
+  margin-bottom: 0;
+  width: 40%;
+  height: 30%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.check-box {
+  width: 20px;
+  height: 20px;
+}
+
+.check-box-div {
+  margin-top: 15px;
+  padding-left: 25px;
+}
+
+/* .content input {
+  width: 50%;
+} */
+
+#submitButton {
+  margin-top: 30px;
+  padding-bottom: 1px !important;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 15px;
+  background: none;
+  color: rgb(50, 120, 123);
+  border: 2px solid rgb(50, 120, 123);
+  padding: 1px 34px;
+  text-decoration: none;
+  transition: color 0.3s, background 0.3s;
+}
+
+#submitButton:hover {
+  color: #fff; /* Change the text color to white on hover */
+  background: rgb(50, 120, 123); /* Change the background color on hover */
+}
+
+.main-content-Roles h4 {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.Permission-form p {
+  margin-top: 25px;
+  text-align: left;
+  font-size: 20px;
+}
+
+/* ---------------------------------------appointment------------------------------------------- */
+
+.datetime-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.time-field,
+.date-field {
+  width: 48%;
+}
+
+.reason {
+  /* Styling for form input elements */
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  /* Styling for the submit button */
+  display: inline-block; /* Change to inline-block */
+  background-color: #61b2c7;
+  color: white;
+  padding: 10px 15px;
+  border: white;
+  border-radius: 30px;
+  cursor: pointer;
+  text-decoration: none; /* Add this line to remove default underline on anchor tag */
+}
+
+.submit-button:hover {
+  color: #fff; /* Change the text color to white on hover */
+  background: rgb(50, 120, 123); /* Change the background color on hover */
+}
+
+.appointment-container {
+  padding-bottom: 50px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap between the image and text */
+}
+
+#main-content-appointment {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  width: 80%;
+}
+
+.content-appointment {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kd-image-wrapper > .k-icon {
+  font-size: 72px;
+}
+
+/* Breakpoints for full screen demo: max:599px, min:759px and max: 959 */
+@media (max-width: 678px),
+  (min-width: 821px) and (max-width: 1038px),
+  (min-width: 1241px) and (max-width: 1328px) {
+  .kd-image-wrapper {
+    display: none !important;
+  }
+
+  .kd-actions div {
+    width: auto;
+    flex-grow: 1;
+  }
+
+  .kd-content {
+    margin-top: 24px;
+  }
+}
+input#datepicker,
+input#timepicker {
+  height: 44px;
+}
+
+/* Breakpoint for full screen demo: max:359px */
+@media (max-width: 476px) {
+  .kd-header {
+    height: 100%;
+  }
+
+  .kd-header-core {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .kd-actions {
+    flex-direction: column;
+  }
+
+  .kd-actions > div {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .kd-content {
+    display: none;
+  }
+}
+
+tr.k-calendar-tr {
+  background-color: #ffffff;
+}
+
+.kd-image-wrapper > .k-icon {
+  font-size: 72px;
+}
+
+/* Breakpoints for full screen demo: max:599px, min:759px and max: 959 */
+@media (max-width: 678px),
+  (min-width: 821px) and (max-width: 1038px),
+  (min-width: 1241px) and (max-width: 1328px) {
+  .kd-image-wrapper {
+    display: none !important;
+  }
+
+  .kd-actions div {
+    width: auto;
+    flex-grow: 1;
+  }
+
+  .kd-content {
+    margin-top: 24px;
+  }
+}
+
+/* Breakpoint for full screen demo: max:359px */
+@media (max-width: 476px) {
+  .kd-header {
+    height: 100%;
+  }
+
+  .kd-header-core {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .kd-actions {
+    flex-direction: column;
+  }
+
+  .kd-actions > div {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .kd-content {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+.main-content-appointment {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.make-appointment-button {
+  position: absolute;
+  top: 18px;
+  right: 40px;
+  background-color: #61b2c7;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.appointment-details {
+  text-align: left;
+  max-width: 90%;
+  margin: 1.25rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Add this line to push content to the top and bottom */
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  position: relative; /* Add this line to position the button relative to the .appointment-details div */
+}
+
+.appointment-details .submit-button {
+  text-align: center;
+  width: 30%;
+  margin-top: auto; /* Add this line to align the button to the bottom */
+  align-self: flex-end; /* Add this line to align the button to the right */
+  color: white;
+  border-radius: 30px !important;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.scrol-div {
+  max-height: 74vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3a92a0 #ffffff;
+}
+
+.scrol-div::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrol-div::-webkit-scrollbar-thumb {
+  background-color: #3a92a0;
+}
+
+.scrol-div::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+.status-pending {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.status-scheduled {
+  font-weight: bold;
+  color: #2a873b;
+}
+
+.status-completed {
+  font-weight: bold;
+  color: #7a7c7e;
+}
+
+/* ----------------------------------stripe------------------- */
+.StripeElement {
+  box-sizing: border-box;
+  width: 50%;
+  height: 50px;
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #a5afb9;
+}
+
+.StripeElement--invalid {
+  border-color: #e64c2d;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+#payment-details {
+  background-color: rgb(250, 250, 250);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  width: 95%;
+  height: 100px; /* Adjust the height as needed */
+}
+
+/* -------------------- */
+.success-message {
+  font-weight: bold;
+  font-size: 20px;
+  color: #191a1a;
+  text-align: center;
+  height: 4%;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #c5f0ad;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: -21px; /* Adjust the right position as needed */
+  top: 50%; /* Adjust the top position as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+}

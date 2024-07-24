@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <div class="admin-panel">
+        <div class="sidebar">
+            <div class="bar">
+                <h2>Admin</h2>
+            </div>
+            <!-- EJS template code -->
+            <!-- EJS template code -->
+            <ul>
+                <li class="<%= activeStatus === 'dashboard' ? 'active' : '' %>">
+                    <a href=" /Admin">
+                        <img src="/dashboard.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Dashboard
+                    </a>
+                </li>
+                <li class="<%= activeStatus === 'user-roles' ? 'active' : '' %>">
+                    <a href=" /User-Roles">
+                        <img src="/user-role.png" alt="" height="30" width="30"> <!-- Image for User Roles with height and width -->
+                        Roles
+                    </a>
+                </li>
+                <li class="<%= activeStatus === 'doctor' ? 'active' : '' %>">
+                    <a href=" /doctor-management">
+                        <img src="/doctor.png" alt="" height="30" width="30"> <!-- Image for Doctor Management with height and width -->
+                        Doctor management
+                    </a>
+                </li>
+                <li class="<%= activeStatus === 'patient' ? 'active' : '' %>">
+                    <a href=" /patient-management">
+                        <img src="/patient.png" alt="" height="30" width="30"> <!-- Image for Patient Management with height and width -->
+                        Patient management
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+        <div class="content">
+            <div class="bar">
+                <h3>Welcome, Admin!</h3>
+                <a href="/logout">Logout</a>
+            </div>
+            <div class="main-content-dashboard">
+                <a href=" /doctor-management" class="cards">
+                    <img src="/doctor.png" alt="" class="svg-styling">
+                    <div>
+                        <p>Total Doctors</p>
+                        <p><%= (Users.find(user => user.roleId === 2) || { '': 0 })[''] %></p>
+                    </div>
+                </a>
+                <a href=" /patient-management" class="cards">
+                    <img src="/patient.png" alt="" class="svg-styling">
+                    <div>
+                        <p>Total Patients</p>
+                        <p><%= (Users.find(user => user.roleId === 3) || { '': 0 })[''] %></p>
+                    </div>
+                </a>
+                
+                
+                <div class="cards">
+                    <img src="/completed.png" alt="" class="svg-styling">
+                    <div>
+                        <p>Completed Consultations</p>
+                        <p>58565</p>
+                    </div>
+                </div>
+                <div class="cards">
+                    <img src="/pending.png" alt="" class="svg-styling">
+                    <div>
+                        <p>Pending Consultations</p>
+                        <p>582334</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

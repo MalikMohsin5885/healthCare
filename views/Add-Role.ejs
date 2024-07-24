@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>Roles</title>
+</head>
+
+<body>
+    <div class="Roles">
+        <div class="sidebar">
+            <div class="bar">
+                <h2>Admin</h2>
+            </div>
+            <ul>
+                <li><a href="/Admin">Dashboard</a></li>
+                <li ><a href="/User-Roles">Roles</a></li>
+                <li><a href="/doctor-management">Doctor management</a></li>
+                <li><a href="/patient-management">Patient management</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="bar">
+                <h3>Add Role</h3>
+            </div>
+            <div class="main-content-Roles">
+                <h4>Role Details</h4>
+                <form action="/Role/submission" method="POST">
+                    <div class="role-body">
+                        <div class="col-md-6">
+                            <label for="role" class="form-label">Role Name</label>
+                            <select class="form-select" name="role" id="role" required>
+                                <option value="" disabled selected>Choose</option>
+                                <option value="doctor">Doctor</option>
+                                <option value="patient">Patient</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid role.
+                            </div>
+                        </div>
+
+                        <div class="Permission-form">
+                            <p>Permissions</p>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="Edit_profile" type="checkbox" id="flexSwitchCheckChecked">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Edit profile</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="Consultation" type="checkbox" id="flexSwitchCheckChecked">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Consultation</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="access_Treatement" type="checkbox" id="flexSwitchCheckChecked">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">View Treatement History</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="recured" type="checkbox" id="flexSwitchCheckChecked">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">recured</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- <div class="d-flex justify-content-center">
+                        <a href="" id="submitButton">Add Role</a>
+                    </div> -->
+
+                    <div class="centerbutton">
+                        <button type="submit" class="btn" id="add-role">Add User</button>
+                    </div>
+                </form>
+                <div class="Permission form">
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

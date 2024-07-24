@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="col-md-6 p-3 col-lg-8 login">
+            <h2 class="mb-4">Login</h2>
+            <form action="/login/password" method="post">
+                <div class="login-div">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+                </div>
+                <div class="login-div">
+                    <label for="current-password">Password</label>
+                    <input id="current-password" name="password" type="password" autocomplete="current-password"
+                        required>
+                </div>
+                <div class="login-btn-center">
+                    <button id="submit-button" type="submit" class="submit-button" style="width: 150px; padding: 1%;">Submit</button>
+                    <p>Create Account      <a href="/signup" class="signIn-link">Signup</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/password.js"></script>
+    <!-- <link rel="stylesheet" href="./Implement Bootstarp/bootstrap.js"> -->
+</body>
+
+</html>

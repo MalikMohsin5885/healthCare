@@ -1,0 +1,59 @@
+so my table names includes 
+Users
+role
+consultations
+permisions
+rights
+
+their entities includes
+
+Role:
+Role_id (PK)
+Role Nmae
+
+User:
+UserId(PK)
+fName
+lNmae
+country
+city
+postcode
+email
+password
+Role_ID (FK) from role
+
+permissions:
+permission_ID (pk)
+Permission_name
+
+rights:
+role_id (fk) from Role
+permission_ID (fk) from permissions
+
+Consultations Table:
+--------------------
+consultation_id (PK)
+patient_id (FK) REFERENCES Users(UserId)
+consult_date
+disease_name
+symptoms_details
+doctor_id (FK) REFERENCES Users(UserId)
+status
+
+
+
+Prescriptions Table:
+--------------------
+prescription_id (PK)
+consultation_id (FK) REFERENCES Consultations(consultation_id)
+medication_name
+dosage
+frequency
+duration
+instructions
+
+
+
+now i describe u my scenario 
+first i describe u admin. admin have all the rights of doctors and patoients and some additional rights. firstly admin have the right to generate roles which stores in role table
+now when any user wants to registers as patient then its role role set to 2 or when any want to signup as doctor then it sets to 1. admin have the rights to assign permissions to users such as it gives both doctor and patient the right to edit their profile. now for consultation patient first go to its dashboard and consult a doctor like it fills the form which stores in consulation table filling the entities like patient_id (fk) from USer,consult_date,disease name,Symtoms details then admin see that and assign doctor to the patient by adding the role id of specific doctor 

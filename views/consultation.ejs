@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <title>schedual an appointment</title>
+</head>
+
+<body>
+    <div class="admin-panel">
+        <div class="sidebar">
+            <div class="bar">
+                <h4>Consult a doctor</h4>
+            </div>
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <img src="/dashboard.png" alt="" height="50" width="50">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Consultation">
+                        <img src="/consult.png" alt="" height="50" width="50">
+                        <!-- Image for Dashboard with height and width -->
+                        Take an Appointment
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/edit-profile?id=<%=Userdata.UserId%>">
+                        <img src="/edit-profile.png" alt="" height="50" width="50">
+                        Edit profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <img src="/logout.png" alt="" height="50" width="50">
+                        <!-- Image for Dashboard with height and width -->
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="content">
+            <% if (successMessage && successMessage.length> 0) { %>
+                <div class="success-message" id="successMessageDiv">
+                    <%= successMessage %>
+                </div>
+                <% } %>
+                    <div class="bar">
+                        <h3>Welcome, <%= Userdata !=undefined ? Userdata.fName : "Deafult" %>
+                        </h3>
+                    </div>
+
+                    <div class="main-content-appointment">
+                        <h3>Appointment Status</h3>
+                        <a href="/ZoomToken" class="make-appointment-button">Make an Appointment</a>
+
+                        <div class="scrol-div">
+                            <% !appointments ? console.log("No appointments taken") :
+                                appointments.forEach(function(appointment) { %>
+                                <div class="appointment-details">
+                                    <p><strong>Disease Description:</strong>
+                                        <%= appointment.ReasonForAppointment %>
+                                    </p>
+
+                                    <p><strong>Doctor Name:</strong>
+                                        <%= appointment.fName %>
+                                    </p>
+
+
+                                    <!-- Your HTML file -->
+                                    <p id="time"><strong>Time:</strong> <span id="appointmentTime">
+                                            <%= appointment.Time %>
+                                        </span></p>
+                                    <p id="date"><strong>Date:</strong> <span id="appointmentDate">
+                                            <%= appointment.Date %>
+                                        </span></p>
+
+
+                                    <!-- Status box -->
+                                    <p><strong>Status:</strong>
+                                        <% if (appointment.AppointmentStatus==='Scheduled' ) { %>
+                                            <span class="status-scheduled">Scheduled</span>
+                                            <% } else if (appointment.AppointmentStatus==='Completed' ) { %>
+                                                <span class="status-completed">Completed</span>
+                                                <% } else { %>
+                                                    <span class="status-pending">
+                                                        <%= appointment.AppointmentStatus %>
+                                                    </span>
+                                                    <% } %>
+                                    </p>
+                        
+                                <% 
+                                // Get the appointment date and time
+                                const appointmentDateTime = new Date(`${appointment.Date} ${appointment.Time}`);
+                                const currentDateTime = new Date();
+                        
+                                // Set seconds to zero for both date objects
+                                appointmentDateTime.setSeconds(0);
+                                currentDateTime.setSeconds(0);
+                        
+                                console.log("i am in const page ");
+                                console.log(currentDateTime);
+                                console.log(appointmentDateTime);
+                                
+                                // Check if the current date and time are greater than or equal to the appointment date and time
+                                if (currentDateTime >= appointmentDateTime) { %>
+                                    <a id="meeting-joining" href="<%= appointment.JoinURL %>" class="submit-button" target="_blank">Join Now</a>
+                                <% } else { %>
+                                    <!-- Disable the button and hide the joining status -->
+                                    <a id="meeting-joining" href="<%= appointment.JoinURL %>" class="submit-button" target="_blank">Join Now</a>
+                                <% } %>
+
+                                <p id="joining-status" style=<%= currentDateTime >= appointmentDateTime ? 'display:none;' : '' %>><strong>
+                                    <span class="status-pending">
+                                        Meeting time has not come yet.
+                                    </span>
+                                </strong></p>
+                            </div>
+                        <% }) %>
+
+
+                        </div>
+                    </div>
+        </div>
+
+
+    </div>
+    </div>
+    <script>
+        // Set a timeout to remove the success message div after 2 seconds
+        setTimeout(function () {
+            var successMessageDiv = document.getElementById('successMessageDiv');
+            if (successMessageDiv) {
+                successMessageDiv.remove();
+            }
+        }, 3000);
+    </script>
+    <script src="/js/meeting.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>user dashboard</title>
+</head>
+
+<body>
+    <div class="admin-panel">        
+        <div class="sidebar">
+            <div class="bar">
+                <h4>Dashboard</h4>
+            </div>
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <img src="/dashboard.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Dashboard
+                    </a>
+                </li>
+                <% if (Userdata.roleId == 2) { %>
+                    <li>
+                        <a href="/PendingConsultation">
+                            <img src="/pending.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                            Pending consultation
+                        </a>
+                    </li>
+
+                <%} else if(Userdata.roleId == 3){ %>
+                    <li>
+                        <a href="/Consultation">
+                            <img src="/consult.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                            Take an Appointment
+                        </a>
+                    </li>
+                    
+                <% } %>
+                
+                <li>
+                    <a href="/edit-profile?id=<%=Userdata.UserId%>">
+                        <img src="/edit-profile.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Edit profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <img src="/logout.png" alt="" height="50" width="50"> <!-- Image for Dashboard with height and width -->
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="content">
+            <% if (successMessage && successMessage.length > 0) { %>
+                <div class="success-message" id="successMessageDiv"><%= successMessage %></div>
+            <% } %>
+            
+            
+            <div class="bar">
+                <h3>Welcome, <%= Userdata != undefined ? Userdata.fName : "Deafult" %></h3>
+            </div>
+            <div class="main-content-Roles">
+                <div>
+                    <div>
+                        patients details 
+                    </div>
+
+                    <div>
+                       next patient 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Set a timeout to remove the success message div after 2 seconds
+        setTimeout(function () {
+            var successMessageDiv = document.getElementById('successMessageDiv');
+            if (successMessageDiv) {
+                successMessageDiv.remove();
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

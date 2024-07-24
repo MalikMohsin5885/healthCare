@@ -1,0 +1,24 @@
+Diff btw sendfile and render
+
+
+I tried both res.render('index.html') and res.sendfile('index.html') and they both seem to be doing the same thing. I don't find the Express.js documentation very helpful.
+
+ans.
+
+The render method works when you have a templating engine, such as Handlebars or Jade, in use.
+
+A templating engine is something that parses a given template file and generates HTML output. This is so you can generate an HTML web page depending on some variables in your program.
+
+Such templates are often used with Express.js when writing applications that have a front-end.
+
+The sendfile method, on the other hand, simply sends a given file to the client, regardless of the type and contents of the file.
+
+Since you are using an HTML file, there is nothing particularly to be parsed by the templating engine. So, the output of render is same as that of sendfile (i.e., the HTML written in the file). Hence, both produce the same result.
+
+
+
+get vs post
+
+The get method is typically used when you want to retrieve data or render a page in response to an HTTP GET request. In this case, when a user accesses the URL /Doctor-management via their browser or another HTTP client using a GET request, the function inside the get method is executed.
+
+If you were implementing functionality to add a new doctor or update an existing one, you might use the post method. The post method is commonly used when you want to submit data to the server, for example, through a form submission.

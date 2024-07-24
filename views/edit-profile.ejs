@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>edit profile</title>
+</head>
+
+<body>
+    <div class="admin-panel">
+        <div class="sidebar">
+            <div class="bar">
+                <h4>Edit profile</h4>
+            </div>
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <img src="/dashboard.png" alt="" height="50" width="50">
+                        <!-- Image for Dashboard with height and width -->
+                        Dashboard
+                    </a>
+                </li>
+                <% if (Userdata[0].roleId==2) { %>
+                    <li>
+                        <a href="/PendingConsultation">
+                            <img src="/pending.png" alt="" height="50" width="50">
+                            <!-- Image for Dashboard with height and width -->
+                            Pending consultation
+                        </a>
+                    </li>
+
+                    <%}if(Userdata[0].roleId==3){ %>
+                        <a href="/Consultation">
+                            <img src="/consult.png" alt="" height="50" width="50">
+                            <!-- Image for Dashboard with height and width -->
+                            Take an Appointment
+                        </a>
+                        <% } %>
+
+                            <li>
+                                <a href="/edit-profile?id=<%=Userdata.UserId%>">
+                                    <img src="/edit-profile.png" alt="" height="50" width="50">
+                                    <!-- Image for Dashboard with height and width -->
+                                    Edit profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/logout">
+                                    <img src="/logout.png" alt="" height="50" width="50">
+                                    <!-- Image for Dashboard with height and width -->
+                                    Logout
+                                </a>
+                            </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="bar">
+                <h3>Welcome, <%= Userdata != undefined ? Userdata.fName : "Deafult" %></h3>
+                <a href="#">Logout</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center p-4">
+                    <div class="signup">
+                        <h2 class="my-4">Edit Profile</h2>
+                        <form class="signup-form" action=<%=`/Update-User/submission?id=${Userdata[0].UserId}`%>
+                            method="POST" onsubmit="return validatePassword()">
+                            <!-- first name -->
+                            <div class="text-box-holder">
+                                <div class="display-block-div">
+                                    <label for="firstName" class="form-label">First name</label>
+                                    <input type="text" class="form-control" name="firstName" id="firstName"
+                                        placeholder="first name" required value=<%=Userdata.length> 0 ? Userdata[0].fName : '' %>>
+                                    <div class="invalid-feedback">
+                                        Valid first name is required.
+                                    </div>
+                                </div>
+
+                                <!--last name -->
+                                <div class="display-block-div">
+                                    <label for="lastName" class="form-label">Last name</label>
+                                    <input type="text" class="form-control" name="lastName" id="lastName"
+                                        placeholder="last name" value=<%=Userdata.length> 0 ? Userdata[0].lName : '' %>>
+                                    <div class="invalid-feedback">
+                                        Valid last name is required.
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- date of Birth -->
+                            <div class="text-box-holder">
+                                <div class="display-block-div">
+                                    <label for="Dob" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" name="DOB" id="Dob" placeholder="" required
+                                        value=<%=Userdata.length> 0 ? Userdata[0].dob.toISOString().split('T')[0] : ''
+                                    %>>
+                                    <div class="invalid-feedback">
+                                        Valid DOB is required.
+                                    </div>
+                                </div>
+                                <!-- gender -->
+                                <div class="display-block-div">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-select" name="gender" id="gender-add" required style="width: 93%;">
+                                        <option value="" disabled selected>Choose</option>
+                                        <option value="male" <%=Userdata.length> 0 && Userdata[0].gender === 'M' ?
+                                            'selected' : '' %>>Male</option>
+                                        <option value="female" <%=Userdata.length> 0 && Userdata[0].gender === 'F' ?
+                                            'selected' : '' %>>Female</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid gender.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-box-holder">
+                                <div class="display-block-div">
+                                    <label for="email" class="form-label">Email <span
+                                            class="text-body-secondary"></span></label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="you@example.com" required value=<%=Userdata.length> 0 ?
+                                    Userdata[0].email : '' %>>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address for shipping updates.
+                                    </div>
+                                </div>
+
+                                <!-- password -->
+                                <div class="display-block-div">
+                                    <label for="password" class="form-label me-3">Password <span
+                                            class="text-body-secondary"></span></label>
+                                    <div class="password-input-container">
+                                        <input type="password" class="form-control me-2" name="password" id="password"
+                                            placeholder="PASSWORD" oninput="validatePassword()" required
+                                            value=<%=Userdata.length> 0 ? '' : 'Default123' %> >
+                                        <img src="/eye.png" id="togglePassword" style="width: 25px; height: 25px;"
+                                            class="toggle-password" onclick="togglePasswordVisibility()"
+                                            alt="Toggle Password">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- country -->
+                            <div class="text-box-holder">
+                                <div>
+                                    <label for="country" class="form-label">Country</label>
+                                    <select class="form-select  " name="country" id="country" required>
+                                        <option value="" disabled selected>Choose</option>
+                                        <option value="Pakistan" <%=Userdata.length> 0 && Userdata[0].country ==
+                                            'Pakistan' ? 'selected' : '' %>>Pakistan</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid country.
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="state" class="form-label">City</label>
+                                    <select class="form-select  " name="city" id="state" required>
+                                        <option value="" disabled selected>Choose</option>
+                                        <option value="lahore" <%=Userdata.length> 0 && Userdata[0].city == 'lahore'?
+                                            'selected' : '' %> >Lahore</option>
+                                        <option value="Karachi" <%=Userdata.length> 0 && Userdata[0].city == 'Karachi'?
+                                            'selected' : '' %> >Karachi</option>
+                                        <option value="Islamabad" <%=Userdata.length> 0 && Userdata[0].city ==
+                                            'Islamabad' ? 'selected' : '' %> >Islamabad</option>
+                                        <option value="Rawalpindi" <%=Userdata.length> 0 && Userdata[0].city ==
+                                            'Rawalpindi' ? 'selected' : '' %> >Rawalpindi</option>
+                                        <option value="Multan" <%=Userdata.length> 0 && Userdata[0].city == 'Multan' ?
+                                            'selected' : '' %> >Multan</option>
+                                        <option value="Peshawar" <%=Userdata.length> 0 && Userdata[0].city == 'Peshawar'
+                                            ? 'selected' : '' %> >Peshawar</option>
+                                        <option value="Faisalabad" <%=Userdata.length> 0 && Userdata[0].city ==
+                                            'Faisalabad' ? 'selected' : '' %> >Faisalabad</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid City.
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <label for="postcode" class="form-label">Postcode</label>
+                                    <input type="text" class="form-control" name="postcode" id="postcode"
+                                        placeholder="05444" required value=<%=Userdata.length> 0 ? Userdata[0].postcode : '' %>
+                                    >
+                                    <div class="invalid-feedback">
+                                        postcode required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <button class="w-100 btn btn-primary btn-lg mt-3" id="btn-css" type="submit">Sign up</button> -->
+                            <div class="login-btn-center">
+                                <button id="submit-button" type="submit" class="submit-button"
+                                    style="width: 150px; padding: 1%;">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/password.js"></script>
+
+</body>
+
+</html>

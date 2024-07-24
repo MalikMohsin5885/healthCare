@@ -1,0 +1,33 @@
+---https://www.tutorialsteacher.com/nodejs/access-sql-server-in-nodejs
+from where i see connection string in express
+
+ ---https://www.youtube.com/watch?v=Uvy_BlgwfLI
+https://www.telerik.com/blogs/step-by-step-create-node-js-rest-api-sql-server-database
+from i learn how to create routes
+
+
+https://www.youtube.com/watch?v=ILviQic0c8g
+from where where learned how to read data from and store them in array
+
+https://dev.to/jahongir2007/creating-a-login-and-registration-form-with-nodejs-expressjs-and-mysql-database-160n
+from where i learn the login form structure etc(DEV)
+
+https://www.npmjs.com/package/password-validator
+npm password validator library
+
+https://www.npmjs.com/package/email-check
+npm email validate library
+
+https://expressjs.com/en/guide/routing.html
+how to create routes
+
+https://expressjs.com/en/guide/writing-middleware.html
+middleware functions
+
+
+
+
+
+https://jasonwatmore.com/post/2022/07/01/nodejs-ms-sql-server-simple-api-for-authentication-registration-and-user-management
+
+
